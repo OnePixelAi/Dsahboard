@@ -252,7 +252,7 @@
     <div class="topbar">
       <div>
         <div class="eyebrow">Virtual Office</div>
-        <h2 class="display">ศูนย์ข้อมูล <em>One Pixel AI</em></h2>
+        <h2 class="display">ศูนย์บัญชาการ <em>One Pixel AI</em></h2>
         <p class="sub">AI-Powered Ebooks. Limitless Possibilities. · ทีม AI 4 คน ทำงานเป็นสายพานผลิต ebook</p>
       </div>
       <div class="admin">
@@ -265,16 +265,15 @@
 
     <!-- HERO IMAGE SLOT -->
     <section class="hero">
-      <img src="office.PNG" alt="One Pixel AI office"
-           onerror="this.style.display='none';document.getElementById('ph').style.display='flex'">
+      <img id="heroimg" alt="One Pixel AI office">
       <div class="overlay">
         <h3>One Pixel AI — Virtual Office</h3>
         <p>Create Once. Inspire Millions. Earn Forever.</p>
       </div>
-      <div class="ph" id="ph">
+      <div class="ph" id="ph" style="display:none">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="m21 16-5-5L5 21"/></svg></div>
         <b>วางภาพออฟฟิศตรงนี้</b>
-        <small>เซฟภาพที่ generate มา ตั้งชื่อ <code>office.PNG</code> แล้ววางไว้โฟลเดอร์เดียวกับไฟล์นี้ ภาพจะขึ้นเอง</small>
+        <small>เซฟภาพไว้โฟลเดอร์เดียวกับไฟล์นี้ ตั้งชื่อ <code>office.png</code> หรือ <code>Office.PNG</code> ก็ได้ ภาพจะขึ้นเอง</small>
       </div>
     </section>
 
@@ -404,6 +403,20 @@
 </div>
 
 <script>
+  // ลองโหลดชื่อไฟล์รูปทุกแบบ (พิมพ์เล็ก/ใหญ่) ถ้าไม่เจอเลยค่อยโชว์ placeholder
+  (function(){
+    var im=document.getElementById('heroimg');
+    var ph=document.getElementById('ph');
+    var names=['office.png','Office.PNG','Office.png','office.PNG','OFFICE.PNG',
+               'office.jpg','Office.JPG','Office.jpg','office.jpeg','Office.jpeg'];
+    var i=0;
+    im.onerror=function(){
+      if(i<names.length){ im.src=names[i++]; }
+      else{ im.style.display='none'; ph.style.display='flex'; }
+    };
+    im.src=names[i++];
+  })();
+
   function tick(){
     const d=new Date(),p=n=>String(n).padStart(2,'0');
     document.getElementById('clock').textContent=`${p(d.getHours())}:${p(d.getMinutes())} UTC+7`;
